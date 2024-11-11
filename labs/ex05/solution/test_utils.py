@@ -6,7 +6,7 @@ import numpy as np
 
 def test(f):
     # The `globs` defines the variables, functions and packages allowed in the docstring.
-    tests = doctest.DocTestFinder().find(f)
+    tests = doctest.DocTestFinder().find(f, globs={f.__name__: f, "np": np})
     assert len(tests) <= 1
     for test in tests:
         # We redirect stdout to a string, so we can tell if the tests worked out or not
